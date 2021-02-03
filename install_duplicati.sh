@@ -20,7 +20,7 @@ fi
 	kernel="Kernel				 : `uname -r`"
 	arquitetura="Arquitetura	 : `uname -m`"
     echo "+-------------------------------------------------+"
-    echo "|         Utilitario para Duplicati  v1.6         |"
+    echo "|         Utilitario para Duplicati  v1.7         |"
     echo "+-------------------------------------------------+"
     echo "+-------------------------------------------------+"
     echo "| Escrito por:                                    |"
@@ -134,7 +134,7 @@ systemctl start duplicati
      echo "+-------------------------------------------------+OK"
      echo
 
-echo "Liberando "
+echo "Liberando porta $duplicati_port no Firewall..."
 firewall-cmd --add-port=$duplicati_port/tcp  1&> /dev/null
 firewall-cmd --reload  1&> /dev/null
      echo "+-------------------------------------------------+OK"
