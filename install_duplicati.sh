@@ -20,7 +20,7 @@ fi
 	kernel="Kernel				 : `uname -r`"
 	arquitetura="Arquitetura	 : `uname -m`"
     echo "+-------------------------------------------------+"
-    echo "|         Utilitario para Duplicati  v1.0         |"
+    echo "|         Utilitario para Duplicati  v1.2         |"
     echo "+-------------------------------------------------+"
     echo "+-------------------------------------------------+"
     echo "| Escrito por:                                    |"
@@ -61,7 +61,7 @@ cd /opt/ ; wget https://updates.duplicati.com/beta/duplicati-2.0.5.1-2.0.5.1_bet
 
 echo "Instalando Duplicati..."
 #rpm -i duplicati-2.0.5.1-2.0.5.1_beta_20200118.noarch.rpm  1&> /dev/null
-dnf install duplicati-2.0.5.1-2.0.5.1_beta_20200118.noarch.rpm  1&> /dev/null
+dnf install -y duplicati-*.rpm  1&> /dev/null
      echo "+-------------------------------------------------+OK"
      echo
 
@@ -69,7 +69,7 @@ dnf install duplicati-2.0.5.1-2.0.5.1_beta_20200118.noarch.rpm  1&> /dev/null
 read -p 'Duplicati webserver hostname: ' duplicati_hostname
 while true
 do
-  read -p 'Duplicati webserver port [default 8200]: ' duplicati_port
+  read -p 'Duplicati webserver port [padrão 8200]: ' duplicati_port
   [[ $duplicati_port =~ ^([0-9]+|'')$ ]] || { echo "Enter a valid number"; continue; }
   if (( duplicati_port >= 1 && duplicati_port <= 65535 )); then
     break;
@@ -78,7 +78,7 @@ do
     duplicati_port=8200
     break;
   else
-    echo "Port not valid!"
+    echo "Porta invalida!"
   fi
 done
 
@@ -88,6 +88,8 @@ read -p 'Duplicati webserver ssl certificate path (pkcs12) [Deixe em branco para
 if [ -n "$ssl_cert_path" ]; then
   ssl_config="--webservice-sslcertificatefile=$ssl_cert_path"
 fi
+     echo "+-------------------------------------------------+OK"
+     echo
 
 echo "Criando arquivos systemctl..."
 cat > /etc/systemd/system/duplicati.service << EOF
@@ -120,13 +122,19 @@ echo "Opções adicionais que são passadas para o Daemon..."
 DAEMON_OPTS="--webservice-port=$duplicati_port --webservice-interface=any --webservice-allowed-hostnames=$duplicati_hostname $ssl_config"
 
 EOF
-
+     echo "+-------------------------------------------------+OK"
+     echo
+	 
 echo "Habilitando e iniciando o daemon Duplicati..."
 systemctl daemon-reload
 systemctl enable duplicati
 systemctl start duplicati
-
-echo "Adicionando certificados CA da Mozilla para evitar o erro "Nenhum certificado encontrado" error
-curl -O https://curl.haxx.se/ca/cacert.pem
-cert-sync --user cacert.pem
-rm -f cacert.pem
+     echo "+-------------------------------------------------+OK"
+     echo
+	 
+echo "Adicionando certificados CA da Mozilla para evitar o erro "Nenhum certificado encontrado""
+curl -O https://curl.haxx.se/ca/cacert.pem 1&> /dev/null
+cert-sync --user cacert.pem 1&> /dev/null
+rm -f cacert.pem 1&> /dev/null
+     echo "+-------------------------------------------------+OK"
+     echo
