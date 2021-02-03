@@ -20,7 +20,7 @@ fi
 	kernel="Kernel				 : `uname -r`"
 	arquitetura="Arquitetura	 : `uname -m`"
     echo "+-------------------------------------------------+"
-    echo "|         Utilitario para Duplicati  v1.4         |"
+    echo "|         Utilitario para Duplicati  v1.5         |"
     echo "+-------------------------------------------------+"
     echo "+-------------------------------------------------+"
     echo "| Escrito por:                                    |"
@@ -54,10 +54,12 @@ fi
 echo "Instalando dependencias..."
 yum install appindicator-sharp libappindicator-sharp mono-core libappindicator yum-utils mono-devel -y  1&> /dev/null
     echo "+-------------------------------------------------+OK"
-
+	echo
+	
 echo "Download Duplicati..."
 cd /opt/ ; wget https://updates.duplicati.com/beta/duplicati-2.0.5.1-2.0.5.1_beta_20200118.noarch.rpm  1&> /dev/null
     echo "+-------------------------------------------------+OK"
+	echo
 
 echo "Instalando Duplicati..."
 #rpm -i duplicati-2.0.5.1-2.0.5.1_beta_20200118.noarch.rpm  1&> /dev/null
@@ -133,8 +135,8 @@ systemctl start duplicati
      echo
 
 echo "Liberando "
-firewall-cmd --add-port="$duplicati_port"/tcp
-firewall-cmd --reload
+firewall-cmd --add-port="$duplicati_port"/tcp  1&> /dev/null
+firewall-cmd --reload  1&> /dev/null
      echo "+-------------------------------------------------+OK"
      echo
 	 
