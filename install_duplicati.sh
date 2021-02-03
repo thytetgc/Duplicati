@@ -20,7 +20,7 @@ fi
 	kernel="Kernel				 : `uname -r`"
 	arquitetura="Arquitetura	 : `uname -m`"
     echo "+-------------------------------------------------+"
-    echo "|         Utilitario para Duplicati  v1.2         |"
+    echo "|         Utilitario para Duplicati  v1.3         |"
     echo "+-------------------------------------------------+"
     echo "+-------------------------------------------------+"
     echo "| Escrito por:                                    |"
@@ -61,7 +61,7 @@ cd /opt/ ; wget https://updates.duplicati.com/beta/duplicati-2.0.5.1-2.0.5.1_bet
 
 echo "Instalando Duplicati..."
 #rpm -i duplicati-2.0.5.1-2.0.5.1_beta_20200118.noarch.rpm  1&> /dev/null
-dnf install -y duplicati-*.rpm  1&> /dev/null
+dnf install -y duplicati-*.rpm
      echo "+-------------------------------------------------+OK"
      echo
 
