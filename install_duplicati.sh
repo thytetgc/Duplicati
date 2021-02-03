@@ -19,7 +19,6 @@ fi
 	codename="Codename			 : `lsb_release -c | cut -d : -f 2- | sed 's/^[ \t]*//;s/[ \t]*$//'`"
 	kernel="Kernel				 : `uname -r`"
 	arquitetura="Arquitetura	 : `uname -m`"
-	versaozimbra="Versao Zimbra : `su - zimbra -c 'zmcontrol -v'`"
     echo "+-------------------------------------------------+"
     echo "|         Utilitario para Duplicati  v1.0         |"
     echo "+-------------------------------------------------+"
