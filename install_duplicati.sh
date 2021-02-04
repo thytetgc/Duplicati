@@ -20,7 +20,7 @@ fi
 	kernel="Kernel				 : `uname -r`"
 	arquitetura="Arquitetura	 : `uname -m`"
     echo "+-------------------------------------------------+"
-    echo "|         Utilitario para Duplicati  v1.7         |"
+    echo "|         Utilitario para Duplicati  v1.8         |"
     echo "+-------------------------------------------------+"
     echo "+-------------------------------------------------+"
     echo "| Escrito por:                                    |"
@@ -52,7 +52,7 @@ fi
 	echo
 
 echo "Instalando dependencias..."
-yum install appindicator-sharp libappindicator-sharp mono-core libappindicator yum-utils mono-devel -y  1&> /dev/null
+yum install appindicator-sharp libappindicator-sharp mono-core libappindicator yum-utils mono-devel dnf -y  1&> /dev/null
     echo "+-------------------------------------------------+OK"
 	echo
 	
